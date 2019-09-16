@@ -1,2 +1,23 @@
 @import "../../node_modules/material-design-icons/iconfont/material-icons.css";
 @import "./materialize.min.css";
+
+html, body {
+    height: 100%;
+}
+
+body {
+    background-image: url("../images/bg-beerflix-2560.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+/* Screen width	Smallest screen height	In use worldwide
+1024 px	768 px	3%
+1280 px	800 px	11%
+1360 px	768 px	2%
+1366 px	768 px	35%
+1440 px	900 px	6%
+1600 px	900 px	6%
+1680 px	1050 px	3%
+1920 px	1080 px	20%
+2560 px and up	1440 px	1% */
