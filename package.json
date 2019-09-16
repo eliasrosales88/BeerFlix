@@ -1,0 +1,32 @@
+{
+  "name": "beerflix",
+  "version": "1.0.0",
+  "description": "Beer site for beer lovers. Cheers!",
+  "main": "index.js",
+  "scripts": {
+    "lint": "./node_modules/.bin/eslint src",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/eliasrosales88/BeerFlix.git"
+  },
+  "keywords": [
+    "beer"
+  ],
+  "author": "Elias Rosales",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/eliasrosales88/BeerFlix/issues"
+  },
+  "homepage": "https://github.com/eliasrosales88/BeerFlix#readme",
+  "devDependencies": {
+    "eslint": "^6.4.0",
+    "husky": "^3.0.5"
+  },
+  "dependencies": {
+    "express": "^4.17.1",
+    "material-design-icons": "^3.0.1"
+  }
+}
