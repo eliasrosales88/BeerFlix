@@ -3,11 +3,30 @@
 
 html, body {
     height: 100%;
+    background: url("../images/swirl_pattern.png");
+    background-repeat: repeat;
 }
 
 .bg-header {
     width: 100%;
 }
+
+footer {
+    position: absolute;
+    height: 150px;
+    bottom: 0;
+    border-top: 3px solid #ffc107;
+    /* background: url("../images/wov.png");
+    background-repeat: repeat; */
+    width: 100%;
+    padding: 10px;
+}
+
+
+.pt-3 {
+    padding-top: 3em
+}
+
 /* Screen width	Smallest screen height	In use worldwide
 1024 px	768 px	3%
 1280 px	800 px	11%
