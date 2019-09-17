@@ -5,12 +5,9 @@ html, body {
     height: 100%;
 }
 
-body {
-    background-image: url("../images/bg-beerflix-2560.jpg");
-    background-size: cover;
-    background-repeat: no-repeat;
+.bg-header {
+    width: 100%;
 }
-
 /* Screen width	Smallest screen height	In use worldwide
 1024 px	768 px	3%
 1280 px	800 px	11%

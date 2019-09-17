@@ -8,18 +8,26 @@
     <title>BeerFlix</title>
 </head>
 <body>
-  <!-- Navbar starts -->
-  <nav class="amber darken-2">
-    <div class="nav-wrapper">
-      <a href="#" class="brand-logo">Logo</a>
-      <ul id="nav-mobile" class="right hide-on-med-and-down">
-        <li><a href="sass.html">Sass</a></li>
-        <li><a href="badges.html">Components</a></li>
-        <li><a href="collapsible.html">JavaScript</a></li>
-      </ul>
-    </div>
-  </nav>
-  <!-- Navbar ends -->
+  <header>
+    <!-- Navbar starts -->
+    <nav class="amber darken-2">
+      <div class="nav-wrapper">
+        <a href="#" class="brand-logo">Logo</a>
+        <ul id="nav-mobile" class="right hide-on-med-and-down">
+          <li><a href="sass.html">Sass</a></li>
+          <li><a href="badges.html">Components</a></li>
+          <li><a href="collapsible.html">JavaScript</a></li>
+        </ul>
+      </div>
+    </nav>
+    <picture>
+      <source srcset="./src/images/bg-beerflix-2560.jpg" media="(min-width: 2560px)">
+      <source srcset="./src/images/bg-beerflix-1920.jpg" media="(max-width: 1920px)">
+      <source srcset="./src/images/bg-beerflix-1024.jpg" media="(min-width: 1024px)">
+      <img src="./src/images/bg-beerflix-1024.jpg" alt="beer-bar" class="bg-header"/>
+  </picture>
+    <!-- Navbar ends -->
+  </header>
  
   <!-- Main Section starts -->
   <div class="container">
