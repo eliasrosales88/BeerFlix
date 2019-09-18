@@ -26,6 +26,7 @@ const cardTemplate = `
 
 const renderBeers = async () => {
   const beers = await getBeers();
+  // eslint-disable-next-line no-unused-vars
   beers.forEach(bear => {
     mainSection.innerHTML += cardTemplate;
   });
