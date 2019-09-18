@@ -7,24 +7,60 @@ html, body {
     background-repeat: repeat;
 }
 
-.bg-header {
-    width: 100%;
+#main {
+    position: relative;
+    min-height: 100vh;
+}
+
+#main-beers {
+    padding-bottom: 100px;
+    margin-bottom: 0;
 }
 
 footer {
     position: absolute;
-    height: 150px;
     bottom: 0;
     border-top: 3px solid #ffc107;
-    /* background: url("../images/wov.png");
-    background-repeat: repeat; */
     width: 100%;
     padding: 10px;
 }
 
+header #header-img {
+    position: relative;
+}
+
+header #header-img picture img {
+    position: relative;
+    z-index: 100;
+}
+
+.bg-header {
+    width: 100%;
+    min-height: 100px
+}
 
 .pt-3 {
     padding-top: 3em
+}
+
+
+
+input[type="text"].main-search {
+    -webkit-appearance: none;
+    appearance: none;
+    background: #ffffff;
+    border-radius: 50px;
+    position: absolute;
+    top: 25%;
+    left: 0;
+    z-index: 200;
+    width: 60%;
+    left: 20%;
+    height: 50px;
+    padding: 0 10px;
+    border-bottom: none !important;
+    box-shadow: none !important;
+    
 }
 
 /* Screen width	Smallest screen height	In use worldwide
