@@ -102,10 +102,23 @@ input[type="text"].main-search {
     /* overflow: hidden; */
 }
 
+.like {
+    cursor: pointer;
+}
+.liked {
+    color: #1b5e20;
+}
+.d-flex {
+    display: flex;
+}
 
+.flex-column {
+    flex-direction: column;
+}
 
-
-
+.flex-ai-end {
+    align-items: end;
+}
 
 /* MEDIA QUERIES */
 @media screen and (min-width: 993px){

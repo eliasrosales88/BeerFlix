@@ -1,13 +1,13 @@
 "use strict";
 import  api from "./api.js";
-import { toggle } from "./ui.js";
+import { toggle, onLike, loadChekedLikes } from "./ui.js";
 
 const { getBeers } = api();
 const mainSection = document.querySelector("#main-beers");
 
 // const {} = 
 
-const cardTemplate = ({ name, description, image, likes, firstBrewed}) => `
+const cardTemplate = ({ beerId, name, description, image, likes, firstBrewed}) => `
   <div class="col s12 m6 l4">
     <div class="card hoverable">
       <div class="card-image">
@@ -16,8 +16,14 @@ const cardTemplate = ({ name, description, image, likes, firstBrewed}) => `
       </div>
       <div class="card-content">
         <span class="card-title activator grey-text text-darken-4">${name}</span>
-        <p><a href="#">Full Review</a></p>
-        <p><i class="material-icons grey-text text-darken-4">thumb_up_alt</i> ${likes}</p>
+        <div class="row">
+          <div class="col s9">
+            <p><a href="#">Full Review</a></p>
+          </div>
+          <div class="col s3">
+            <div class="right-align d-flex flex-column flex-ai-end"><span><i class="material-icons like" data-id=${beerId}>thumb_up_alt</i></span><span> ${likes}</span></div>
+          </div>
+        </div>
       </div>
       <div class="card-reveal amber lighten-2">
         <div class="card-close right"><i class="material-icons">close</i></div>
@@ -50,10 +56,20 @@ const renderBeers = (elementToInjectBeersDOM, beers) => {
     const descButton = card.querySelector("span.btn-floating");
     const desc = card.querySelector(".card-reveal");
     const closeDesc = card.querySelector(".card-close");
+    const likeButton = card.querySelector(".like");
+    const beerId = likeButton.dataset.id;
     
-    descButton.addEventListener("click", () => toggle(desc, "reveal"));
-    closeDesc.addEventListener("click", () => toggle(desc, "reveal"));
+    console.log(likeButton);
     
+    console.log(beerId);
+    
+    
+    descButton.addEventListener("click", toggle(desc, "reveal"));
+    closeDesc.addEventListener("click", toggle(desc, "reveal"));
+    
+    likeButton.addEventListener("click", onLike(likeButton , beerId));
+    
+    loadChekedLikes(likeButton , beerId);
     
     
   });
@@ -73,10 +89,7 @@ const loadBeers = async () => {
   } catch (err) {
     console.log(err);
   }
-  // // eslint-disable-next-line no-unused-vars
-  // beers.forEach(bear => {
-  //   mainSection.innerHTML += cardTemplate;
-  // });
+ 
 };
 
 loadBeers();
