@@ -2,7 +2,7 @@
 import  api from "./api.js";
 import { toggle, onLike, loadChekedLikes } from "./ui.js";
 
-const { getBeers } = api();
+const { getBeers, getBeer, postBeerLike } = api();
 const mainSection = document.querySelector("#main-beers");
 
 // const {} = 
@@ -21,7 +21,7 @@ const cardTemplate = ({ beerId, name, description, image, likes, firstBrewed}) =
             <p><a href="#">Full Review</a></p>
           </div>
           <div class="col s3">
-            <div class="right-align d-flex flex-column flex-ai-end"><span><i class="material-icons like" data-id=${beerId}>thumb_up_alt</i></span><span> ${likes}</span></div>
+            <div class="right-align d-flex flex-column flex-ai-end"><span><i class="material-icons like" data-id=${beerId}>thumb_up_alt</i></span><span class="like-count"> ${likes}</span></div>
           </div>
         </div>
       </div>
@@ -57,17 +57,25 @@ const renderBeers = (elementToInjectBeersDOM, beers) => {
     const desc = card.querySelector(".card-reveal");
     const closeDesc = card.querySelector(".card-close");
     const likeButton = card.querySelector(".like");
+    const likeCount = card.querySelector(".like-count");
     const beerId = likeButton.dataset.id;
-    
-    console.log(likeButton);
-    
-    console.log(beerId);
-    
     
     descButton.addEventListener("click", toggle(desc, "reveal"));
     closeDesc.addEventListener("click", toggle(desc, "reveal"));
+    likeButton.addEventListener("click", async () => {
     
-    likeButton.addEventListener("click", onLike(likeButton , beerId));
+      if (!likeButton.classList.contains("liked")) {
+        await postBeerLike(beerId).then(async () => {
+          await getBeer(beerId).then((beer) => {
+            console.log(beer);
+            likeCount.innerHTML = beer.likes;
+            onLike(likeButton, beerId);
+          });
+        });
+      }
+      
+    
+    });
     
     loadChekedLikes(likeButton , beerId);
     

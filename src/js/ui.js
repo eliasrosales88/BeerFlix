@@ -1,5 +1,4 @@
 "use strict";
-console.log("UI Loaded");
 
 /**
  * onHover class on hover
@@ -33,7 +32,7 @@ export const toggle = (htmlElement, className) => () => {
  * @param {string} id Set beer like in localstorage
  * @param {any} htmlElement DOM element
  */
-export const onLike = (htmlElement, id) => () => {
+export const onLike = async (htmlElement, id) => {
   const getBeerLikeStatus = localStorage.getItem("beerId-" + id);
   if (getBeerLikeStatus === null) {
     localStorage.setItem("beerId-" + id, "true");
@@ -48,6 +47,7 @@ export const onLike = (htmlElement, id) => () => {
  */
 export const loadChekedLikes = (htmlElement, id) => {
   const getBeerLikeStatus = localStorage.getItem("beerId-" + id);
+  
   if (JSON.parse(getBeerLikeStatus)) {
     htmlElement.classList.add("liked");
   }
