@@ -1,6 +1,6 @@
 "use strict";
 import  api from "./api.js";
-import { toggle, onLike, loadChekedLikes } from "./ui.js";
+import { toggle, onLike, loadChekedLikes, toggleLoader } from "./ui.js";
 
 const { getBeers, getBeer, postBeerLike } = api();
 const mainSection = document.querySelector("#main-beers");
@@ -23,6 +23,11 @@ const cardTemplate = ({ beerId, name, description, image, likes, firstBrewed}) =
           <div class="col s3">
             <div class="right-align d-flex flex-column flex-ai-end"><span><i class="material-icons like" data-id=${beerId}>thumb_up_alt</i></span><span class="like-count"> ${likes}</span></div>
           </div>
+        </div>
+      </div>
+      <div class="like-loader hide">
+        <div class="progress">
+          <div class="indeterminate green darken-4"></div>
         </div>
       </div>
       <div class="card-reveal amber lighten-2">
@@ -59,20 +64,29 @@ const renderBeers = (elementToInjectBeersDOM, beers) => {
     const likeButton = card.querySelector(".like");
     const likeCount = card.querySelector(".like-count");
     const beerId = likeButton.dataset.id;
-    
+    const likeLoader = card.querySelector(".like-loader");
+
+
     descButton.addEventListener("click", toggle(desc, "reveal"));
     closeDesc.addEventListener("click", toggle(desc, "reveal"));
     likeButton.addEventListener("click", async () => {
-    
       if (!likeButton.classList.contains("liked")) {
-        await postBeerLike(beerId).then(async () => {
-          await getBeer(beerId).then((beer) => {
-            console.log(beer);
-            likeCount.innerHTML = beer.likes;
-            onLike(likeButton, beerId);
+        try {
+          toggle(likeLoader, "hide")();
+          await postBeerLike(beerId).then(async () => {
+            await getBeer(beerId).then((beer) => {
+              likeCount.innerHTML = beer.likes;
+              onLike(likeButton, beerId);
+            });
           });
-        });
-      }
+        } catch (err) {
+          console.error(err);
+          
+        } finally {
+          toggle(likeLoader, "hide")();
+        }
+      }  
+      
       
     
     });
@@ -90,13 +104,17 @@ const renderBeers = (elementToInjectBeersDOM, beers) => {
  */
 const loadBeers = async () => {
   try {
+    toggleLoader();
+    
     const beers = await getBeers();
-
     renderBeers(mainSection, beers);
 
   } catch (err) {
     console.log(err);
-  }
+  } finally {
+
+    toggleLoader();
+  } 
  
 };
 

@@ -2,8 +2,8 @@
 
 /**
  * onHover class on hover
- * @param {*} htmlElement Dom element
- * @param {*} className css class
+ * @param {any} htmlElement Dom element
+ * @param {string} className css class
  */
 export const onHover = (htmlElement, className) => {
   
@@ -19,8 +19,8 @@ export const onHover = (htmlElement, className) => {
 
 /**
  * toggle class
- * @param {*} htmlElement Dom element
- * @param {*} className css class
+ * @param {any} htmlElement Dom element
+ * @param {string} className css class
  */
 export const toggle = (htmlElement, className) => () => {
   htmlElement.classList.toggle(className);
@@ -53,6 +53,11 @@ export const loadChekedLikes = (htmlElement, id) => {
   }
 };
 
+
+const loader = document.querySelector("#loader");
+
+
+export const toggleLoader = toggle(loader, "hide");
 
 
 
