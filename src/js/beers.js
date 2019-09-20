@@ -49,7 +49,9 @@ const cardTemplate = ({ beerId, name, description, image, likes, firstBrewed}) =
  */
 const renderBeers = (elementToInjectBeersDOM, beers) => {
   // Here is asigned the beer with the card template
-  const htmlBeer = beers.slice(0, 10).map(beer => {
+  console.log(beers);
+  
+  const htmlBeer = beers.map(beer => {
     return cardTemplate({ ...beer});
   }).join("");
 
@@ -69,10 +71,13 @@ const renderBeers = (elementToInjectBeersDOM, beers) => {
 
     descButton.addEventListener("click", toggle(desc, "reveal"));
     closeDesc.addEventListener("click", toggle(desc, "reveal"));
+
+    // Here we post new likes
     likeButton.addEventListener("click", async () => {
       if (!likeButton.classList.contains("liked")) {
         try {
           toggle(likeLoader, "hide")();
+          toggle(likeButton, "disabled")();
           await postBeerLike(beerId).then(async () => {
             await getBeer(beerId).then((beer) => {
               likeCount.innerHTML = beer.likes;
@@ -84,6 +89,7 @@ const renderBeers = (elementToInjectBeersDOM, beers) => {
           
         } finally {
           toggle(likeLoader, "hide")();
+          toggle(likeButton, "disabled")();
         }
       }  
       
@@ -102,17 +108,14 @@ const renderBeers = (elementToInjectBeersDOM, beers) => {
 /**
  * Load beers and asign them in the DOM
  */
-const loadBeers = async () => {
+export const loadBeers = async (text) => {
   try {
     toggleLoader();
-    
-    const beers = await getBeers();
+    const beers = await getBeers(text);
     renderBeers(mainSection, beers);
-
   } catch (err) {
     console.log(err);
   } finally {
-
     toggleLoader();
   } 
  

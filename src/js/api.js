@@ -20,8 +20,8 @@ const api = (API_URL = "https://web-bootcamp-exercise-beer-api-nijliozdcg.now.sh
   
   return {
     getBeers: async text => {
-      const searchAPIEndpoint = `${API_URL}?search=`;
-      const beersAPIEndpoint = `${API_URL}`;
+      const searchAPIEndpoint = `${API_URL}?limit=10&search=`;
+      const beersAPIEndpoint = `${API_URL}?limit=10`;
       const requestUrl = text ? `${searchAPIEndpoint}${text}` : beersAPIEndpoint;
       const response = await fetch(requestUrl, miInitGet);
       try {

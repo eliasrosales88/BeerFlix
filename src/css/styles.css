@@ -43,24 +43,33 @@ header #header-img picture img {
     padding-top: 3em
 }
 
+.main-search {
+    position: absolute;
+    top: 25%;
+    left: 10%;
+    z-index: 200;
+    width: 80%;
+}
 
 
-input[type="text"].main-search {
+.main-search input[type="search"] {
     -webkit-appearance: none;
     appearance: none;
     background: #ffffff;
-    border-radius: 50px;
-    position: absolute;
-    top: 25%;
-    left: 0;
-    z-index: 200;
-    width: 60%;
-    left: 20%;
-    height: 50px;
     padding: 0 10px;
     border-bottom: none !important;
     box-shadow: none !important;
+    flex: 10;
+    margin: 5px;
     
+}
+
+.main-search button[type="submit"] {
+    -webkit-appearance: none;
+    flex: 2;
+    margin: 5px;
+    height: auto;
+    min-width: min-content;
 }
 
 
@@ -107,6 +116,11 @@ input[type="text"].main-search {
 }
 .liked {
     color: #1b5e20;
+}
+
+.disabled {
+    opacity: 0.5;
+    pointer-events: none;
 }
 
 #loader {

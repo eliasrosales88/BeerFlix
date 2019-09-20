@@ -28,13 +28,31 @@
           <source srcset="./src/images/bg-beerflix-1024.jpg" media="(max-width: 1024px)">
           <img src="./src/images/bg-beerflix-1024.jpg" alt="beer-bar" class="bg-header"/>
         </picture>
-        <input type="text" name="search-beer" id="search-beer" placeholder="Search for Beers" class="main-search ambar grey-text text-darken-3"/>
+        <form id="search-form" novalidate>
+          <div class="main-search d-flex">
+            <input data-pattern-mismatch="Input invalid" required type="search" name="search-beer" id="search-beer" placeholder="Search for Beers" class="ambar grey-text text-darken-3"/>
+            <button type="submit" class="waves-effect waves-light btn amber grey-text text-darken-3">Search</button>
+          </div>
+          </form>
       </div>
     </header>
   
     <!-- Main Section starts -->
     <div id="main">
       <div class="container">
+        <!-- Paginator starts -->
+        <!-- <div class="pag-wrapper">
+          <ul class="pagination">
+            <li class="disabled"><a href="#!"><i class="material-icons">chevron_left</i></a></li>
+            <li class="active amber"><a href="#!">1</a></li>
+            <li class="waves-effect"><a href="#!">2</a></li>
+            <li class="waves-effect"><a href="#!">3</a></li>
+            <li class="waves-effect"><a href="#!">4</a></li>
+            <li class="waves-effect"><a href="#!">5</a></li>
+            <li class="waves-effect"><a href="#!"><i class="material-icons">chevron_right</i></a></li>
+          </ul>
+        </div> -->
+        <!-- Paginator ends -->
         <div id="main-beers" class="row"></div>
       </div>
       <!-- Footer starts -->
@@ -98,5 +116,7 @@
     <script type="module" src="./src/js/api.js"></script>
     <script type="module" src="./src/js/beers.js"></script>
     <script type="module" src="./src/js/ui.js"></script>
+    <script type="module" src="./src/js/search.js"></script>
+    <script src="./src/js/js.cookie.js"></script>
   </body>
 </html>
