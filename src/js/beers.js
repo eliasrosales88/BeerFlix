@@ -114,15 +114,15 @@ export const filterBeersByDate = (beers, dateStartMonth, dateStartYear, dateEndM
 
   let filteredBeers = beers.filter(beer => {
     const firstBrewedArray = beer.firstBrewed.split("/");
-    const firstBrewedMonth = Number(firstBrewedArray[0]);
+    const firstBrewedMonth = Number(firstBrewedArray[0]-1);
     const firstBrewedYear = Number(firstBrewedArray[1]);
 
     const firstBrewedDate = new Date(firstBrewedYear, firstBrewedMonth, 1);
 
     const startDate = new Date(dateStartYear, dateStartMonth);
-    const EndDate = new Date(dateEndYear, dateEndMonth);
+    const endDate = new Date(dateEndYear, dateEndMonth);
     
-    return firstBrewedDate >= startDate && firstBrewedDate <= EndDate;
+    return firstBrewedDate >= startDate && firstBrewedDate <= endDate;
   });
 
   console.log("filteredBeers", filteredBeers);
