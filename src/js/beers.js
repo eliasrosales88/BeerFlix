@@ -103,16 +103,45 @@ const renderBeers = (elementToInjectBeersDOM, beers) => {
   });
 };
 
+/**
+ * 
+ * @param {array} beers Beers array
+ */
+export const filterBeersByDate = (beers, dateStartMonth, dateStartYear, dateEndMonth, dateEndYear) => {
 
+  let filteredBeers = beers.filter(beer => {
+    const firstBrewedArray = beer.firstBrewed.split("/");
+    const firstBrewedMonth = Number(firstBrewedArray[0]);
+    const firstBrewedYear = Number(firstBrewedArray[1]);
+
+    const firstBrewedDate = new Date(firstBrewedYear, firstBrewedMonth, 1);
+
+    const startDate = new Date(dateStartYear, dateStartMonth);
+    const EndDate = new Date(dateEndYear, dateEndMonth);
+    
+    return firstBrewedDate >= startDate && firstBrewedDate <= EndDate;
+  });
+
+  console.log("filteredBeers", filteredBeers);
+  
+  return filteredBeers;
+};
 
 /**
  * Load beers and asign them in the DOM
  */
-export const loadBeers = async (text) => {
+export const loadBeers = async (text, isDate, dateStartMonth, dateStartYear, dateEndMonth, dateEndYear) => {
   try {
     toggleLoader();
+    console.log("isdate", isDate);
     const beers = await getBeers(text);
-    renderBeers(mainSection, beers);
+
+    if (isDate) {
+      console.log("inside isDate");
+      renderBeers(mainSection, filterBeersByDate(beers, dateStartMonth, dateStartYear, dateEndMonth, dateEndYear));
+    } else {
+      renderBeers(mainSection, beers);
+    }
   } catch (err) {
     console.log(err);
   } finally {

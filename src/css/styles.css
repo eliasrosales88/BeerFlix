@@ -36,11 +36,7 @@ header #header-img picture img {
 
 .bg-header {
     width: 100%;
-    min-height: 100px
-}
-
-.pt-3 {
-    padding-top: 3em
+    min-height: 180px
 }
 
 .main-search {
@@ -72,6 +68,28 @@ header #header-img picture img {
     min-width: min-content;
 }
 
+#header-img #date-filter{
+    position: absolute;
+    top: 61%;
+    left: 11%;
+    z-index: 200;
+}
+
+#header-img span.badge {
+    float: left;
+    margin-left: 0;
+    margin-right: 14px;
+}
+
+#header-img input[type="date"] {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background: #fff;
+    border-bottom: 0;
+    width: auto;
+    height: auto;
+}
 
 .card {
     overflow: hidden;
@@ -98,21 +116,19 @@ header #header-img picture img {
 }
 
 .card .card-reveal.reveal {
-    /* display: block; */
     transform: translateY(-100%);
     transition: transform 1s;
-    /* overflow: hidden; */
 }
 
 .card .card-reveal {
     transform: translateY(0%);
     display: block;
     transition: transform 1s;
-    /* overflow: hidden; */
 }
 
 .like {
     cursor: pointer;
+    width: 16px;
 }
 .liked {
     color: #1b5e20;
@@ -144,8 +160,15 @@ header #header-img picture img {
 .like-loader {
     position: absolute;
     width: 100%;
-    bottom: -14px;
+    bottom: -16px;
 }
+
+
+/* UTILITY CLASSES */
+.pt-3 {
+    padding-top: 3em
+}
+
 .d-flex {
     display: flex;
 }
@@ -157,6 +180,7 @@ header #header-img picture img {
 .flex-ai-end {
     align-items: end;
 }
+
 
 /* MEDIA QUERIES */
 @media screen and (min-width: 993px){
