@@ -7,10 +7,11 @@ const mainSection = document.querySelector("#main-beers");
 
 // const {} = 
 
-const cardTemplate = ({ beerId, name, description, image, likes, firstBrewed}) => `
+const cardTemplate = ({ beerId, name, description, image, likes, firstBrewed, price}) => `
   <div class="col s12 m6 l4">
     <div class="card hoverable">
       <div class="card-image">
+        <span class="price"><span class="price-label">price</span>${price}$</span>
         <img class="activator beer-thumb" src="${image}">
         <span class="btn-floating halfway-fab waves-effect waves-light amber"><i class="material-icons right grey-text text-darken-4">more_vert</i></span>
       </div>
@@ -18,6 +19,7 @@ const cardTemplate = ({ beerId, name, description, image, likes, firstBrewed}) =
         <span class="card-title activator grey-text text-darken-4">${name}</span>
         <div class="row">
           <div class="col s9">
+            <p>first brewed: <b>${firstBrewed}</b></p>
             <p><a href="#">Full Review</a></p>
           </div>
           <div class="col s3">
@@ -33,7 +35,8 @@ const cardTemplate = ({ beerId, name, description, image, likes, firstBrewed}) =
       <div class="card-reveal amber lighten-2">
         <div class="card-close right"><i class="material-icons">close</i></div>
         <div class="card-title grey-text text-darken-4">${name}</div>
-        <p>first brewed: <b>${firstBrewed}</b></p>
+        <p>Price: <b>${price}$</b></p>
+        <p>First brewed: <b>${firstBrewed}</b></p>
         <p>${description}</p>
         <p><a href="#">Full Review</a></p>
       </div>
