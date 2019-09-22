@@ -5,7 +5,6 @@ import { toggle, loadChekedLikes, toggleLoader, addBeerLike } from "./ui.js";
 const { getBeers } = api();
 const mainSection = document.querySelector("#main-beers");
 
-// const {} = 
 
 const cardTemplate = ({ beerId, name, description, image, likes, firstBrewed, price}) => `
   <div class="col s12 m6 l4">

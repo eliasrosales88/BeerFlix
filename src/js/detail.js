@@ -1,6 +1,5 @@
 import api from "./api.js";
 import { toggleLoader, addBeerLike, loadChekedLikes, toggleLIContent, addBeerComment, goToBottom } from "./ui.js";
-// import { renderQuotes } from './quotes.js';
 
 const { getBeer } = api();
 
