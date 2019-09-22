@@ -20,7 +20,7 @@ const cardTemplate = ({ beerId, name, description, image, likes, firstBrewed, pr
         <div class="row">
           <div class="col s9">
             <p>first brewed: <b>${firstBrewed}</b></p>
-            <p><a href="#">Full Review</a></p>
+            <p><a href="/detail/${beerId}">Full Review</a></p>
           </div>
           <div class="col s3">
             <div class="right-align d-flex flex-column flex-ai-end"><span><i class="material-icons like" data-id=${beerId}>thumb_up_alt</i></span><span class="like-count"> ${likes}</span></div>
@@ -153,4 +153,4 @@ export const loadBeers = async (text, isDate, dateStartMonth, dateStartYear, dat
  
 };
 
-loadBeers();
+// loadBeers();
