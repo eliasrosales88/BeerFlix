@@ -1,8 +1,8 @@
 "use strict";
 import  api from "./api.js";
-import { toggle, onLike, loadChekedLikes, toggleLoader } from "./ui.js";
+import { toggle, loadChekedLikes, toggleLoader, addBeerLike } from "./ui.js";
 
-const { getBeers, getBeer, postBeerLike } = api();
+const { getBeers } = api();
 const mainSection = document.querySelector("#main-beers");
 
 // const {} = 
@@ -16,7 +16,7 @@ const cardTemplate = ({ beerId, name, description, image, likes, firstBrewed, pr
         <span class="btn-floating halfway-fab waves-effect waves-light amber"><i class="material-icons right grey-text text-darken-4">more_vert</i></span>
       </div>
       <div class="card-content">
-        <span class="card-title activator grey-text text-darken-4">${name}</span>
+        <span class="card-title main activator grey-text text-darken-4">${name}</span>
         <div class="row">
           <div class="col s9">
             <p>first brewed: <b>${firstBrewed}</b></p>
@@ -38,7 +38,7 @@ const cardTemplate = ({ beerId, name, description, image, likes, firstBrewed, pr
         <p>Price: <b>${price}$</b></p>
         <p>First brewed: <b>${firstBrewed}</b></p>
         <p>${description}</p>
-        <p><a href="#">Full Review</a></p>
+        <p><a href="/detail/${beerId}">Full Review</a></p>
       </div>
     </div>
   </div>
@@ -65,39 +65,16 @@ const renderBeers = (elementToInjectBeersDOM, beers) => {
     const descButton = card.querySelector("span.btn-floating");
     const desc = card.querySelector(".card-reveal");
     const closeDesc = card.querySelector(".card-close");
+    
     const likeButton = card.querySelector(".like");
-    const likeCount = card.querySelector(".like-count");
     const beerId = likeButton.dataset.id;
-    const likeLoader = card.querySelector(".like-loader");
 
 
     descButton.addEventListener("click", toggle(desc, "reveal"));
     closeDesc.addEventListener("click", toggle(desc, "reveal"));
 
     // Here we post new likes
-    likeButton.addEventListener("click", async () => {
-      if (!likeButton.classList.contains("liked")) {
-        try {
-          toggle(likeLoader, "hide")();
-          toggle(likeButton, "disabled")();
-          await postBeerLike(beerId).then(async () => {
-            await getBeer(beerId).then((beer) => {
-              likeCount.innerHTML = beer.likes;
-              onLike(likeButton, beerId);
-            });
-          });
-        } catch (err) {
-          console.error(err);
-          
-        } finally {
-          toggle(likeLoader, "hide")();
-          toggle(likeButton, "disabled")();
-        }
-      }  
-      
-      
-    
-    });
+    addBeerLike(card);
     
     loadChekedLikes(likeButton , beerId);
     

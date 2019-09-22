@@ -152,6 +152,26 @@ header #header-img picture img {
     transition: transform 1s;
 }
 
+#card-detail.card  .card-image {
+    flex: 1;
+    text-align: -webkit-center;
+}
+
+#card-detail.card  .card-action .row {
+    margin-bottom: 0
+}
+
+#beer-ingredients .new.badge {
+    float: left;
+    margin-left: 5px;
+    margin-bottom: 5px;
+}
+
+#beer-ingredients li.active {
+    background-color: #ffc107 !important;
+    color: #212121;
+}
+
 .like {
     cursor: pointer;
     width: 16px;
@@ -183,12 +203,23 @@ header #header-img picture img {
     align-items: center;
 }
 
-.like-loader {
+.like-loader, .comment-loader {
     position: absolute;
     width: 100%;
     bottom: -16px;
+    left: 0;
 }
 
+#commentList .collection .collection-item .date {
+    display: flex;
+    flex-direction: row-reverse;
+}
+
+#comment-form input[type=text]:not(.browser-default):focus:not([readonly]) {
+    border-bottom: 1px solid #ffc107;
+    -webkit-box-shadow: 0 1px 0 0 #ffc107;
+    box-shadow: 0 1px 0 0 #ffc107;
+}
 
 /* UTILITY CLASSES */
 .pt-3 {
@@ -211,7 +242,7 @@ header #header-img picture img {
 /* MEDIA QUERIES */
 @media screen and (min-width: 993px){
     
-    .card .card-content .card-title {
+    .card .card-content .card-title.main {
         color: #fff;
         width: 100%;
         min-height: 48px;
@@ -222,13 +253,13 @@ header #header-img picture img {
 }
 
 @media screen and (min-width: 640px) and (max-width: 992px){
-    .card .card-content .card-title {
+    .card .card-content .card-title.main {
         min-height: 64px;
     }
 }
 
 @media screen and (min-width: 601px) and (max-width: 639px) {
-    .card .card-content .card-title {
+    .card .card-content .card-title.main {
         min-height: 96px;
     }
 }

@@ -1,5 +1,11 @@
 "use strict";
 
+import api from "./api.js";
+import apiComment from "./api-comments.js";
+
+const { getBeer, postBeerLike } = api();
+const { postBeerComment } = apiComment();
+
 /**
  * onHover class on hover
  * @param {any} htmlElement Dom element
@@ -86,6 +92,94 @@ export const showArrowBack = removeClass(arrowBack, "hide");
 
 
 export const clearSection = clearDOM(container);
+
+
+
+
+export const goToBottom = (htmlElement) => {
+  htmlElement.addEventListener("click", () => window.scrollTo(0,document.body.scrollHeight));
+};
+
+
+export const addBeerLike = (htmlElement) =>{
+  const card = htmlElement;
+  const likeButton = card.querySelector(".like");
+  const likeCount = card.querySelector(".like-count");
+  const beerId = likeButton.dataset.id;
+  const likeLoader = card.querySelector(".like-loader");
+  
+  likeButton.addEventListener("click", async () => {
+    if (!likeButton.classList.contains("liked")) {
+      try {
+        toggle(likeLoader, "hide")();
+        toggle(likeButton, "disabled")();
+        await postBeerLike(beerId).then(async () => {
+          await getBeer(beerId).then((beer) => {
+            likeCount.innerHTML = beer.likes;
+            onLike(likeButton, beerId);
+          });
+        });
+      } catch (err) {
+        console.error(err);
+        
+      } finally {
+        toggle(likeLoader, "hide")();
+        toggle(likeButton, "disabled")();
+      }
+    }  
+  });
+};
+
+
+
+export const addBeerComment = (htmlElement) =>{
+  const comment = htmlElement;
+  const commentButton = comment.querySelector("#comment-form button");
+  const commentList = document.querySelector("#commentList .collection");
+  const beerId = commentButton.dataset.id;
+  const commentLoader = comment.querySelector(".comment-loader");
+  
+  console.log(commentButton);
+  console.log(commentLoader);
+  console.log(commentList);
+  
+  commentButton.addEventListener("click", async (event) => {
+    event.preventDefault();
+    try {
+      const commentInput = comment.querySelector("input");
+      let commentInputValue = commentInput.value;
+      commentInput.value = "";
+      console.log(commentInputValue);
+      toggle(commentLoader, "hide")();
+      toggle(commentButton, "disabled")();
+      await postBeerComment(beerId, commentInputValue).then(async () => {
+        await getBeer(beerId).then((beer) => {
+          commentList.innerHTML = `
+          ${beer.comment.map(comment =>`
+            <li class="collection-item">
+              <div class="date">${new Date(comment.dateComment).getUTCMonth()+1}/${new Date(comment.dateComment).getUTCFullYear()}</div> 
+              <div>${comment.comment}</div>
+            </li>
+          `).join("")}
+          `;
+        });
+      });
+    } catch (err) {
+      console.error(err);
+        
+    } finally {
+      toggle(commentLoader, "hide")();
+      toggle(commentButton, "disabled")();
+    }
+  });
+};
+
+
+
+
+export const toggleLIContent = (htmlElement) => {
+  htmlElement.addEventListener("click", toggle(htmlElement, "active"));
+}; 
 
 
 
