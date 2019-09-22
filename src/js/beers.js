@@ -53,7 +53,6 @@ const cardTemplate = ({ beerId, name, description, image, likes, firstBrewed, pr
 const renderBeers = (elementToInjectBeersDOM, beers) => {
   // Here is asigned the beer with the card template
   console.log(beers);
-  
   const htmlBeer = beers.map(beer => {
     return cardTemplate({ ...beer});
   }).join("");

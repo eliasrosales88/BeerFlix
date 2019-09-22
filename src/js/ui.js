@@ -27,6 +27,14 @@ export const toggle = (htmlElement, className) => () => {
 };
 
 
+export const removeClass = (htmlElement, className) => () => {
+  htmlElement.classList.remove(className);
+};
+
+export const addClass = (htmlElement, className) => () => {
+  htmlElement.classList.add(className);
+};
+
 /**
  * 
  * @param {string} id Set beer like in localstorage
@@ -54,10 +62,32 @@ export const loadChekedLikes = (htmlElement, id) => {
 };
 
 
+export const clearDOM = (htmlElement) => () => {
+  htmlElement.innerHTML = "";
+};
+
+
+
 const loader = document.querySelector("#loader");
+const search = document.querySelector("#search-form");
+const headerImg = document.querySelector("#header-img");
+const container = document.querySelector("#main-beers");
+const arrowBack = document.querySelector("#arrow-back");
 
 
 export const toggleLoader = toggle(loader, "hide");
+export const toggleSearch = toggle(search, "hide");
+
+export const hideHeaderImg = addClass(headerImg, "hide");
+export const showHeaderImg = removeClass(headerImg, "hide");
+
+export const hideArrowBack = addClass(arrowBack, "hide");
+export const showArrowBack = removeClass(arrowBack, "hide");
+
+
+export const clearSection = clearDOM(container);
+
+
 
 
 

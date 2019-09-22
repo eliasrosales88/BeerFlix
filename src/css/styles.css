@@ -25,6 +25,12 @@ footer {
     padding: 10px;
 }
 
+header #arrow-back {
+    display: inline-block;
+    width: 50px;
+    margin-left: 15px;
+}
+
 header #header-img {
     position: relative;
 }
