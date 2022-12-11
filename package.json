@@ -26,7 +26,7 @@
     "husky": "^3.0.5"
   },
   "dependencies": {
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "js-cookie": "^2.2.1",
     "material-design-icons": "^3.0.1",
     "page": "^1.11.4"
